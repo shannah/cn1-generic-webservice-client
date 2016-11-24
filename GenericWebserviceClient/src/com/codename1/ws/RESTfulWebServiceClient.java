@@ -38,6 +38,14 @@ public class RESTfulWebServiceClient {
     }
     
     /**
+     * To be overridden by subclasses that need to customize the connection request... e.g. for adding auth tokens.
+     * @param req 
+     */
+    protected void setupConnectionRequest(ConnectionRequest req) {
+        
+    }
+    
+    /**
      * Deletes a record with a given ID
      * @param id The ID of the record to delete.
      * @param callback Callback executed when request is complete.  Parameter will be true on success. false on fail.
@@ -52,6 +60,7 @@ public class RESTfulWebServiceClient {
                 super.handleErrorResponseCode(code, message); 
             }
         };
+        setupConnectionRequest(req);
         req.setPost(true);
         req.setHttpMethod("DELETE");
         req.setReadResponseForErrors(true);
@@ -86,6 +95,7 @@ public class RESTfulWebServiceClient {
             }
             
         };
+        setupConnectionRequest(req);
         req.addRequestHeader("Content-Type", "application/json");
         req.setReadResponseForErrors(true);
         req.setUrl(endpointURL);
@@ -124,7 +134,7 @@ public class RESTfulWebServiceClient {
             }
             
         };
-        
+        setupConnectionRequest(req);
         req.setUrl(endpointURL + "/"+ id);
         req.setPost(true);
         req.setReadResponseForErrors(true);
@@ -151,6 +161,7 @@ public class RESTfulWebServiceClient {
                 super.handleErrorResponseCode(code, message); 
             }
         };
+        setupConnectionRequest(req);
         req.setPost(false);
         req.setHttpMethod("GET");
         req.setReadResponseForErrors(true);
@@ -182,6 +193,7 @@ public class RESTfulWebServiceClient {
                 super.handleErrorResponseCode(code, message); 
             }
         };
+        setupConnectionRequest(req);
         req.setReadResponseForErrors(true);
         query.setupConnectionRequest(this, req);
         req.addResponseListener(e->{
