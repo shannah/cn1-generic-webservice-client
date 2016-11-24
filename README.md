@@ -29,6 +29,11 @@ public void count(SuccessCallback<Integer> callback);
 public void find(Query query, SuccessCallback<RowSet> callback)
 ~~~~
 
+## Installation
+
+Download [GenericWebserviceClient.cn1lib](https://github.com/shannah/cn1-generic-webservice-client/blob/master/bin/GenericWebserviceClient.cn1lib?raw=true) and copy it to your project's lib directory.  The select "Refresh CN1 libs"
+
+
 ## Examples
 
 **Adding a Record**
